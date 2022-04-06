@@ -220,9 +220,13 @@ def main():
         for cano in remover_canos:
             canos.remove(cano)
 
+        # Se o passaro bater no chão ou no teto, ele morre
         for i, passaro in enumerate(passaros):
             if (passaro.y + passaro.imagem.get_height()) > chao.y or passaro.y < 0:
                 passaros.pop(i)
+
+        # if(len(passaros) == 0):
+            # break
 
         desenhar_tela(tela, passaros, canos, chao, pontos)
 
