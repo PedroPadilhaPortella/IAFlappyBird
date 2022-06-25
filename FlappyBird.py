@@ -1,3 +1,4 @@
+from time import sleep
 import pygame
 import os
 import random
@@ -169,8 +170,8 @@ def desenhar_tela(tela, passaros, canos, chao, pontos):
 
     texto = FONTE_PONTOS.render(f"Pontuação: {pontos}", 1, (255, 255, 255))
     tela.blit(texto, (TELA_LARGURA - 10 - texto.get_width(), 10))
-    chao.desenhar(tela)
     pygame.display.update()
+    chao.desenhar(tela)
 
 
 def main():
@@ -178,6 +179,7 @@ def main():
     chao = Chao(730)
     canos = [Cano(700)]
     tela = pygame.display.set_mode((TELA_LARGURA, TELA_ALTURA))
+    sleep(6)
     pontos = 0
     relogio = pygame.time.Clock()
 
@@ -224,9 +226,14 @@ def main():
         for i, passaro in enumerate(passaros):
             if (passaro.y + passaro.imagem.get_height()) > chao.y or passaro.y < 0:
                 passaros.pop(i)
-
-        # if(len(passaros) == 0):
-            # break
+                
+        if(len(passaros) == 0):
+            texto = FONTE_PONTOS.render(f'''Game Over!''', 1, (255, 255, 255))
+            tela.blit(texto, (TELA_LARGURA - 135 - texto.get_width(), 300))
+            pygame.display.update()
+            sleep(3)
+            pygame.quit()
+            break
 
         desenhar_tela(tela, passaros, canos, chao, pontos)
 

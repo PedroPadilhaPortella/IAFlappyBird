@@ -1,3 +1,4 @@
+from time import sleep
 import pygame
 import os
 import random
@@ -201,6 +202,7 @@ def main(genomas, config): # fitness function
     chao = Chao(730)
     canos = [Cano(700)]
     tela = pygame.display.set_mode((TELA_LARGURA, TELA_ALTURA))
+    sleep(6)
     pontos = 0
     relogio = pygame.time.Clock()
 
